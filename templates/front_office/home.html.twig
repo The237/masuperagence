@@ -1,0 +1,35 @@
+{% extends "/layouts/base.html.twig" %}
+{% block title '237Fact Agency'%}
+
+{% block body %}
+   
+    <div class="jumbotron text-center">
+        <h1> 237Fact {% trans %} Agency {% endtrans %}</h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur est veniam voluptates tenetur quaerat 
+            cumque fuga expedita magni nemo ipsam voluptatem deleniti, explicabo architecto autem excepturi sunt consectetur 
+            blanditiis porro.
+        </p> 
+    </div>
+    <div class="container">
+        <h2 class="text-center"> {% trans %}The latest properties{% endtrans %} </h2>
+        <div class="row flex">
+            {% for property in properties %}
+                <div class="col-3 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href=" {{path('property.show',{ id:property.id, slug : property.slug}) }} "> {{property.title}} </a>
+                            </h5>
+                            <p class="card-text">{{property.description}} ( {{property.postalCode}} )</p>
+                            <div class="text-primary font-weight-bold" style="font-size:2rem">
+                                {{property.formatedPrice}} €
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %} 

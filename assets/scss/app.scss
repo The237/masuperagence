@@ -1,0 +1,21 @@
+@import '~bootstrap/scss/bootstrap';
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/solid';
+
+.alert {
+    padding: 10px;
+    color: white;
+    text-align: center;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    &.alert-success {
+        background-color: green;
+    }
+    &.alert-error {
+        background-color: red;
+    }
+    &.alert-info {
+        background-color: blue;
+    }
+}
