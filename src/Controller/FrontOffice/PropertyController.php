@@ -3,9 +3,14 @@
 namespace App\Controller\FrontOffice;
 
 use App\Entity\Property;
+use App\Entity\PropertySearch;
+use App\Form\PropertySearchType;
+use App\Form\PropertyType;
 use App\Repository\PropertyRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PropertyController extends AbstractController
@@ -16,10 +21,24 @@ class PropertyController extends AbstractController
      * 
      * @Route("/properties", name="property.index")
      */
-    public function index(PropertyRepository $propertyRepository): Response
+    public function index(PropertyRepository $propertyRepository,Request $request, PaginatorInterface $paginator): Response
     {
+        $search = new PropertySearch();
+        $form = $this->createForm(PropertySearchType::class,$search);
+
+        $form->handleRequest($request);
+
+
+        $properties = $paginator->paginate(
+            $propertyRepository->findAllVisibleQuery($search),
+            $request->query->getInt('page',1),
+            $this->getParameter('max_properties_per_page')
+        );
+
         return $this->render('front_office/property/index.html.twig',[
-            'current_menu'=>'properties'
+            'current_menu'=>'properties',
+            'properties' => $properties ,
+            'searchForm'=> $form->createView() 
         ]);
     }
 

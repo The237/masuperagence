@@ -1,10 +1,46 @@
 {% extends "/layouts/base.html.twig" %}
-{% block title 'See all our properties'%}
+{% block title 'See all our availables properties'%}
 
 {% block body %}
    
-    <div class="">
-        <h1> {% trans %} See all our properties {% endtrans %}</h1>
+    <div class="jumbotron">
+        <div class="container">
+            {{ form_start(searchForm) }}
+            <div class="form-row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                    {{ form_row(searchForm.minSurface) }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                    {{ form_row(searchForm.maxPrice) }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <button class="btn btn-primary">{% trans %} Search {% endtrans %}</button>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(searchForm) }}
+        </div>
+    </div> 
+
+    <div class="container">
+        <h1 class="text-center"> {% trans %} See all our availables properties {% endtrans %}</h1>
         
+        <div class="row">
+            {% for property in properties %}
+                <div class="col-md-4">
+                    {% include "front_office/property/_property.html.twig" %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-md-6 mx-auto mt-4">
+                {{ knp_pagination_render(properties) }}
+            </div>
+        </div>
     </div>
 {% endblock %}

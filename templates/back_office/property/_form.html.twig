@@ -1,0 +1,23 @@
+<div class="col-md-6 mx-auto">
+    {{form_start(propertyForm)}}
+    
+            {{ form_row(propertyForm.title) }} 
+            {{ form_row(propertyForm.surface) }} 
+            {{ form_row(propertyForm.price) }}
+            
+        
+            {{ form_row(propertyForm.rooms) }} 
+            {{ form_row(propertyForm.bedrooms)}}
+            {{ form_row(propertyForm.heat) }}
+            {{ form_row(propertyForm.floor) }}
+           
+            {{ form_row(propertyForm.adress)}} 
+            {{ form_row(propertyForm.city) }} 
+            {{ form_row(propertyForm.postalCode) }}
+            {{ form_row(propertyForm.sold) }}
+     
+    {{ form_rest(propertyForm) }}
+    <button class="btn btn-primary btn-block" formnovalidate> {{ button|default('Create') }}  </button>
+    
+    {{form_end(propertyForm)}}
+</div>
