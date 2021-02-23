@@ -8,11 +8,15 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Cocur\Slugify;
 use Cocur\Slugify\Slugify as SlugifySlugify;
+use Faker\Provider\cs_CZ\DateTime;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass=PropertyRepository::class)
  * @ORM\Table(name="Properties")
+ * @Vich\Uploadable()
  */
 class Property
 {
@@ -130,6 +134,25 @@ class Property
      * @ORM\Column(type="boolean",options={"default":false})
      */
     private $sold = false;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255,nullable=true) 
+     */
+    private $fileName;
+
+    /**
+     * @var File|null
+     * @Vich\UploadableField(mapping="property_image",fileNameProperty="fileName")
+     * @Assert\File(maxSize="8M",
+     *     mimeTypes={
+     *     "image/jpeg",
+     *     "image/jpg"},
+     *     mimeTypesMessage = "Please upload a valid image file (jpeg or jpg)"
+     * )
+     */
+    private $imageFile;
+
 
     /**
      * @ORM\Column(type="datetime")
@@ -396,6 +419,46 @@ class Property
     }
 
     /**
+     * @return string
+     */
+    public function getFileName(): ?string
+    {
+        return $this->fileName;
+    }
+
+    /**
+     * @param null|string $fileName
+     */
+    public function setFileName(?string $fileName): self
+    {
+        $this->fileName = $fileName;
+
+        return $this;
+    }
+
+    /**
+     * @return File
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param File $imageFile
+     */
+    public function setImageFile(?File $imageFile): self
+    {
+        $this->imageFile = $imageFile;
+        if($this->imageFile instanceof UploadedFile){
+            $this->updatedAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+
+    /**
      * @return DateTimeInterface
      */
     public function getCreatedAt(): ?\DateTimeInterface
@@ -457,7 +520,6 @@ class Property
                 $option->setProperties(null);
             }
         }
-
-        return $this;
+        return $this; 
     }
 }

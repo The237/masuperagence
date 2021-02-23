@@ -1,4 +1,15 @@
  <div class="card m-2">
+	<div class="card-header">
+		{% if property.fileName %}
+			<a href=" {{path('property.show',{ id:property.id, slug : property.slug}) }} ">
+				<img src="{{vich_uploader_asset(property,'imageFile') | imagine_filter("thumb") }}" alt="card-img-top"/>
+			</a>
+		{% else %}
+			<a href=" {{path('property.show',{ id:property.id, slug : property.slug}) }} ">
+				<img src="{{'/images/properties/empty.jpg' | imagine_filter("thumb") }}" alt="card-img-top"/>
+			</a>
+		{% endif %}
+	</div>
 	<div class="card-body">
 		<h5 class="card-title">
 			<a href=" {{path('property.show',{ id:property.id, slug : property.slug}) }} ">
