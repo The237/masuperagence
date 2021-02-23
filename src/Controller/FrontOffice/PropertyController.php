@@ -2,16 +2,19 @@
 
 namespace App\Controller\FrontOffice;
 
+use App\Entity\Contact;
 use App\Entity\Property;
 use App\Entity\PropertySearch;
 use App\Form\PropertySearchType;
-use App\Form\PropertyType;
+use App\Form\ContactType;
+use App\Notification\ContactNotification;
 use App\Repository\PropertyRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class PropertyController extends AbstractController
 {
@@ -46,13 +49,18 @@ class PropertyController extends AbstractController
      * @param string $slug
      * @param Property $property
      * @param PropertyRepository $propertyRepository
+     * @param Request $request
+     * @param TranslatorInterface $translator
+     * @param ContactNotification $notification
      * 
      * @return Response
      * 
      * @Route("/properties/{slug}-{id}", name="property.show",requirements={"slug":"[a-z0-9\-]*"})
      */
-    public function show(Property $property,string $slug,PropertyRepository $propertyRepository): Response
+    public function show(Property $property,string $slug,PropertyRepository $propertyRepository,Request $request,
+    TranslatorInterface $translator,ContactNotification $notification): Response
     {
+        
         if($property->getSlug() !== $slug ){
             return $this->redirectToRoute('property.show',[
                 'id' => $property->getId(),
@@ -60,9 +68,33 @@ class PropertyController extends AbstractController
             ],301);
         }
 
+        $contact = new Contact();
+        $contact->setProperty($property);
+
+        $form = $this->createForm(ContactType::class,$contact);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $notification->notify($contact);
+
+            $message = 'Your e-mail has been sent';
+            $translator->trans($message);
+
+            $this->addFlash('success',$message);
+
+            /*return $this->redirectToRoute('property.show',[
+                'id' => $property->getId(),
+                'slug'=>$property->getSlug()
+            ]);*/
+        }
+
+
         return $this->render('front_office/property/show.html.twig',[
             'current_menu'=>'properties',
-            'property'=>$property
+            'property'=>$property,
+            'contactForm'=>$form->createView()
         ]);
     }
 }

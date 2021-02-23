@@ -1,0 +1,10 @@
+<h1> {% trans %} Hi! {% endtrans %} {{contact.fullName}} </h1>
+<p>
+    {% trans %} Thanks for being interested by the property wich has that details : {% endtrans %}
+
+    <p>
+        <a href="{{url('property.show',{ id:contact.property.id, slug : contact.property.slug}) }} ">
+            {{ contact.property.title}}
+        </a>
+    </p>
+</p>

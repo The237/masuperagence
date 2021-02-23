@@ -30,6 +30,27 @@
                         Contact the agency
                         {% endtrans %}
                     </a>
+                    <div class="contactForm" class="mt-4">
+                        {{ form_start(contactForm) }}
+                        <div class="row">
+                            <div class="col">{{form_row(contactForm.firstName)}}</div>
+                            <div class="col">{{form_row(contactForm.lastName)}}</div>
+                        </div>
+
+                         <div class="row">
+                            <div class="col">{{form_row(contactForm.phone)}}</div>
+                            <div class="col">{{form_row(contactForm.email)}}</div>
+                        </div>
+                        {{ form_rest(contactForm) }}
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" formnovalidate>
+                                {% trans %}
+                                Contact
+                                {% endtrans %}
+                            </button>
+                        </div>
+                        {{ form_end(contactForm) }}
+                    </div>
                 </div>
             </div>
         </div>
