@@ -1,0 +1,26 @@
+<a href="#" onclick="event.preventDefault();document.getElementById('id01').style.display='block';" class="btn btn-danger">
+	<i class="fas fa-trash"></i>
+</a>
+
+<div id="id01" class="modal">
+	<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+	<form id="js-option-delete-form" class="modal-content" action="{{path('admin.option.delete',{id:option.id})}}" method="POST">
+		<div class="deleteContainer">
+			<h1>
+				{% trans %}
+				Delete an option
+				{% endtrans %}
+			</h1>
+			<p>{% trans %}
+				Are you sure you want to delete that option ?
+				{% endtrans %}</p>
+
+			<div class="clearfix">
+				<button onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" type="button" class="cancelbtn">Cancel</button>
+				<button type="submit" class="deletebtn">Delete</button>
+			</div>
+		</div>
+		<input type="hidden" name="csrf_token" value="{{csrf_token('option_deletion_'~ option.id)}}">
+		<input type="hidden" name="_method" value="DELETE">
+	</form>
+</div>

@@ -1,0 +1,61 @@
+
+{% extends "/layouts/base.html.twig" %}
+{% block title 'Manage options'%}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="text-center">
+			{% trans %}
+			Manage options
+			{% endtrans %}
+		</h1>
+        <div class="text-right mb-2">
+            <a href="{{ path("admin.option.new") }}" class="btn btn-primary"> <i class="fas fa-plus"></i></a>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-center text-uppercase"> {% trans %} Number {% endtrans %}</th>
+                    <th class="text-center text-uppercase"> {% trans %} Name {% endtrans %} </th>
+                    <th class="text-center text-uppercase"> {% trans %} Actions {% endtrans %}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for option in options %}
+                <tr>
+                    <td class="text-center align-middle">{{ option.id }}</td>
+                    <td class="text-center align-middle">{{ option.name }}</td>
+                    <td class="text-center align-middle">
+                        <a class="btn btn-primary" href="{{ path('admin.option.show', {'id': option.id}) }}"><i class="fas fa-eye"></i></a>
+                        <a class="btn btn-warning" href="{{ path('admin.option.edit', {'id': option.id}) }}"><i class="fas fa-edit"></i></a>
+                        <a href="#" onclick="event.preventDefault();document.getElementById('id01').style.display='block';" class="btn btn-danger"> 
+                            <i class="fas fa-trash"></i>
+                        </a>
+                        
+                        <div id="id01" class="modal">
+                            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                            <form id="js-option-delete-form" class="modal-content" action="{{path('admin.option.delete',{id:option.id})}}" method="POST">
+                                <div class="deleteContainer">
+                                    <h1>  {% trans %} Delete an option {% endtrans %} </h1>
+                                    <p>{% trans %} Are you sure you want to delete that option ? {% endtrans %}</p>
+
+                                    <div class="clearfix">
+                                        <button onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" type="button" class="cancelbtn">Cancel</button>
+                                        <button type="submit" class="deletebtn">Delete</button>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="csrf_token" value="{{csrf_token('option_deletion_'~ option.id)}}">
+                                <input type="hidden" name="_method" value="DELETE">
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

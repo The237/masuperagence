@@ -1,0 +1,15 @@
+{% extends "/layouts/base.html.twig" %}
+{% block title 'Edit option '~ option.id %}
+
+
+{% block body %}
+    <div class="container">
+        <h1>Edit Option</h1>
+
+        {{ include('back_office/option/_form.html.twig', {'button_label': 'Update'}) }}
+
+        <a href="{{ path('admin.option.index') }}" class="btn btn-primary" title="Back to list link"><i class="fas fa-arrow-left"></i></a>
+
+        {{ include('back_office/option/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

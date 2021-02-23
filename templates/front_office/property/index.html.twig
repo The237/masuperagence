@@ -19,6 +19,13 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
+                    {{ form_row(searchForm.options) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="form-group">
                         <button class="btn btn-primary">{% trans %} Search {% endtrans %}</button>
                     </div>
                 </div>
@@ -35,6 +42,8 @@
                 <div class="col-md-4">
                     {% include "front_office/property/_property.html.twig" %}
                 </div>
+            {% else %}
+                <h1 class="text-center mt-4"> {% trans %} No properties found corresponding to your search criteria {% endtrans %}</h1>
             {% endfor %}
         </div>
         <div class="row">

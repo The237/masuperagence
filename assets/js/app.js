@@ -1,7 +1,10 @@
 import '../scss/app.scss';
 import $ from 'jquery';
+import 'select2';
+import 'select2/dist/css/select2.css';
 import 'popper.js';
 import 'bootstrap';
+
 
 var modal = document.getElementById('id01');
 
@@ -10,3 +13,5 @@ var modal = document.getElementById('id01');
             modal.style.display = "none";
     }
 }
+
+$('select').select2();

@@ -2,6 +2,7 @@
 
 namespace App\Controller\BackOffice;
 
+use App\Entity\Option;
 use App\Entity\Property;
 use App\Form\PropertyType;
 use App\Repository\PropertyRepository;
@@ -14,13 +15,14 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 /**
  * Class HomeController
+ * @Route("/admin/property")
  */
 class AdminPropertyController  extends AbstractController
 {
     /**
      * @param PropertyRepository $propertyRepository
      * @return Response
-     * @Route("/admin", name="admin.property.index", methods={"GET"})
+     * @Route("/", name="admin.property.index", methods={"GET"})
      */
     public function index(PropertyRepository $propertyRepository): Response
     {
@@ -34,7 +36,7 @@ class AdminPropertyController  extends AbstractController
      * @param EntityManagerInterface $em
      * 
      * @return Response
-     * @Route("/admin/property/create", name="admin.property.create",methods={"GET","POST"})
+     * @Route("/create", name="admin.property.create",methods={"GET","POST"})
      */
     public function create(Request $request,EntityManagerInterface $em,TranslatorInterface $translator): Response
     {
@@ -66,16 +68,15 @@ class AdminPropertyController  extends AbstractController
      * @param EntityManagerInterface $em
      * 
      * @return Response
-     * @Route("/admin/property/update/{id}", name="admin.property.update",methods={"GET","POST"})
+     * @Route("/edit/{id}", name="admin.property.edit",methods={"GET","POST"})
      */
-    public function update(Property $property,Request $request,EntityManagerInterface $em,TranslatorInterface $translator): Response
+    public function edit(Property $property,Request $request,EntityManagerInterface $em,TranslatorInterface $translator): Response
     {
+        
         $form = $this->createForm(PropertyType::class,$property);
         
         $form->handleRequest($request);
         
-     
-
         if($form->isSubmitted() && $form->isValid())
         {    
             $em->flush();   
@@ -93,7 +94,7 @@ class AdminPropertyController  extends AbstractController
     }
 
     /**
-     * @Route("/admin/property/delete/{id}",name="admin.property.delete",methods={"DELETE"})
+     * @Route("/delete/{id}",name="admin.property.delete",methods={"DELETE"})
      * 
      * @param Property $property
      * @param Request $request

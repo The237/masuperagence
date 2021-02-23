@@ -44,8 +44,8 @@
 				{% else %}
 					<li
 						class="nav-item"><!--a href="#" class="nav-link">
-													                                    {% trans %} Login {% endtrans %}
-													                                </a-->
+						{% trans %} Login {% endtrans %}
+						</a-->
 					</li>
 				{% endif %}
 				{% for locale in locales %}
@@ -54,10 +54,10 @@
 							<a class="nav-link" href="{{ path('change_locale',{'locale':locale}) }}">
 								{% if locale == 'fr' %}
 									|
-									<img src="{{asset('build/images/france.png')}}" class="rounded" width="25" height="25"/>
+									<img src="{{asset('build/images/france.png')}}" class="rounded" width="25" height="25" title="France" alt="France"/>
 								{% else %}
 									|
-									<img src="{{asset('build/images/england.png')}}" class="rounded" width="25" height="25"/>
+									<img src="{{asset('build/images/england.png')}}" class="rounded" width="25" height="25" title="France" alt="France"/>
 								{% endif %}
 							</a>
 						</li>

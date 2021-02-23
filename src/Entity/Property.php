@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PropertyRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Cocur\Slugify;
 use Cocur\Slugify\Slugify as SlugifySlugify;
@@ -23,6 +25,7 @@ class Property
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->options = new ArrayCollection();
     }
 
     /**
@@ -35,14 +38,12 @@ class Property
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="This field cannot be blank.")
-     * @Assert\NotNull
      */
     private $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      * @Assert\NotBlank(message="This description cannot be blank.")
-     * @Assert\NotNull
      */
     private $description;
 
@@ -51,20 +52,19 @@ class Property
      * @Assert\Range(
      *  min=10,
      *  max=400,
-    *   minMessage="The surface must be greater than or equal to 10.",
-    *   maxMessage="The surface must less than or equal to 400.")
+     *  minMessage="The surface must be greater than or equal to 10.",
+     *  maxMessage="The surface must less than or equal to 400.")
      * @Assert\NotBlank(message="This field cannot be blank.")
-     * @Assert\NotNull
      */
     private $surface;
 
     /**
      * @ORM\Column(type="integer")
      * @Assert\Range(
-     *  min=1,
-     *  max=5,
-    *   minMessage="The number rooms must be greater than or equal to 1.",
-    *   maxMessage="The number rooms must less than or equal to 6.")
+     *  min=2,
+     *  max=10,
+     *  minMessage="The number rooms must be greater than or equal to 1.",
+     *  maxMessage="The number rooms must less than or equal to 6.")
      * @Assert\NotBlank(message="This field cannot be blank.")
      */
     private $rooms;
@@ -74,8 +74,8 @@ class Property
      * @Assert\Range(
      *  min=2,
      *  max=10,
-    *   minMessage="The number of bedrooms must be greater than or equal to 1.",
-    *   maxMessage="The number of bedrooms must less than or equal to 10.")
+     *  minMessage="The number of bedrooms must be greater than or equal to 1.",
+     *  maxMessage="The number of bedrooms must less than or equal to 10.")
      * @Assert\NotBlank(message="This field cannot be blank.")
      */
     private $bedrooms;
@@ -85,8 +85,8 @@ class Property
      * @Assert\Range(
      *  min=0,
      *  max=15,
-    *   minMessage="The floor must be greater than or equal to 1.",
-    *   maxMessage="The floor must less than or equal to 10.")
+     *  minMessage="The floor must be greater than or equal to 1.",
+     *  maxMessage="The floor must less than or equal to 10.")
      * @Assert\NotBlank(message="This field cannot be blank.")
      */
     private $floor;
@@ -94,10 +94,10 @@ class Property
     /**
      * @ORM\Column(type="integer")
      * @Assert\Range(
-     *  min=1000,
-     *  max=10000,
-    *   minMessage="The price must be greater than or equal to 1000.",
-    *   maxMessage="The price must less than or equal to 10 000.")
+     *  min=10000,
+     *  max=1000000,
+     *   minMessage="The price must be greater than or equal to 1000.",
+     *   maxMessage="The price must less than or equal to 10 000.")
      * @Assert\NotBlank(message="This field cannot be blank.")
      */
     private $price;
@@ -123,7 +123,6 @@ class Property
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="This field cannot be blank.")
-     * @Assert\Regex("/^[0-9]{5}$/")
      */
     private $postalCode;
 
@@ -143,6 +142,11 @@ class Property
     private $updatedAt;
 
     /**
+     * @ORM\ManyToMany(targetEntity=Option::class, inversedBy="properties")
+     */
+    private $options;
+
+    /**
      * @return int
      */
     public function getId(): ?int
@@ -157,16 +161,16 @@ class Property
     {
         return $this->title;
     }
-    
+
     /**
      * @return string
      */
-    public function getSlug():string
+    public function getSlug(): string
     {
         return (new SlugifySlugify())->slugify($this->title);
     }
 
-     /**
+    /**
      * @param string $title
      */
     public function setTitle(?string $title): self
@@ -214,13 +218,13 @@ class Property
 
     /**
      * @return int
-    */
+     */
     public function getRooms(): ?int
     {
         return $this->rooms;
     }
 
-     /**
+    /**
      * @param int $rooms
      */
     public function setRooms(?int $rooms): self
@@ -238,7 +242,7 @@ class Property
         return $this->bedrooms;
     }
 
-     /**
+    /**
      * @param int $bedrooms
      */
     public function setBedrooms(?int $bedrooms): self
@@ -266,7 +270,7 @@ class Property
         return $this;
     }
 
-     /**
+    /**
      * @return int
      */
     public function getPrice(): ?int
@@ -279,7 +283,7 @@ class Property
      */
     public function getFormatedPrice()
     {
-        return number_format($this->price,0,'',' '); 
+        return number_format($this->price, 0, '', ' ');
     }
 
     /**
@@ -318,7 +322,7 @@ class Property
         return $this;
     }
 
-     /**
+    /**
      * @return string
      */
     public function getCity(): ?string
@@ -423,6 +427,36 @@ class Property
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Option[]
+     */
+    public function getOptions(): Collection
+    {
+        return $this->options;
+    }
+
+    public function addOption(Option $option): self
+    {
+        if (!$this->options->contains($option)) {
+            $this->options[] = $option;
+            $option->setProperties($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOption(Option $option): self
+    {
+        if ($this->options->removeElement($option)) {
+            // set the owning side to null (unless already changed)
+            if ($option->getProperties() === $this) {
+                $option->setProperties(null);
+            }
+        }
 
         return $this;
     }

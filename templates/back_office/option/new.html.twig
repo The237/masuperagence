@@ -1,0 +1,12 @@
+{% extends "/layouts/base.html.twig" %}
+{% block title 'Create new Option'%}
+
+{% block body %}
+    <div class="container container mt-4">
+        <h1 class="text-center"> {% trans %}Create new Option{% endtrans %} </h1>
+
+        {{ include('back_office/option/_form.html.twig') }}
+
+        <a href="{{ path('admin.option.index') }}" class="btn btn-primary" title="Back to list link"><i class="fas fa-arrow-left"></i></a>
+    </div>
+{% endblock %}
