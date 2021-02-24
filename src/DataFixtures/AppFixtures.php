@@ -2,16 +2,35 @@
 
 namespace App\DataFixtures;
 
+use Faker\Factory;
+use App\Entity\User;
 use App\Entity\Option;
 use App\Entity\Property;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Faker\Factory;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
+    /**
+     * @var UserPasswordEncoderInterface
+     */
+    private $encoder;
+
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encoder = $encoder;
+    }
+
     public function load(ObjectManager $manager)
     {
+
+        $user = new User();
+        $user->setUsername('demo');
+        $user->setPassword($this->encoder->encodePassword($user,'secret'));
+        
+        $manager->persist($user);
+
         for ($i=1; $i<100 ; $i++) {  
             $faker = Factory::create('en_GB');
 
@@ -35,18 +54,17 @@ class AppFixtures extends Fixture
             $manager->persist($property);
         }
 
+        $option1 = new Option();
+        $option2 = new Option();
+        $option3 = new Option();
 
-        /*for ($i=0; $i<10 ; $i++) {  
-            $faker = Factory::create('en_GB');
-
-            $option = new Option();
-
-            $option
-            ->setName(ucfirst($faker->words(3,true)))
-            ;
-            
-            $manager->persist($option);
-        }*/
+        $option1->setName('Adapté PMR');
+        $option2->setName('Ascenseur');
+        $option3->setName('Balcon');
+                
+        $manager->persist($option1);
+        $manager->persist($option2);
+        $manager->persist($option3);
         
 
         $manager->flush();

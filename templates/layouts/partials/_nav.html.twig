@@ -9,45 +9,36 @@
 
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-			
 				<li class="nav-item">
-					<a href="{{path('property.index')}}" class="nav-link {% if current_menu is defined and current_menu =='properties' %} active {% endif %}">
-						{% trans %}
-						Buy
-						{% endtrans %}
+					<a href="{{path('property.index')}}" class="nav-link {% if current_menu_buy is defined and current_menu_buy =='buy' %} active {% endif %}">
+					{% trans %}
+					Buy
+					{% endtrans %}
 					</a>
 				</li>
-
-
-				{% if is_granted('ROLE_USER') %}
+				{% if app.user %}
+					{% if is_granted('ROLE_ADMIN') %}
+						<li class="nav-item"><a class="nav-link {% if current_menu_properties is defined and current_menu_properties =='properties' %} active {% endif %}" href= "{{path('admin.property.index')}}"> {% trans %} Properties {% endtrans %}  </a></li>
+						<li class="nav-item"><a class="nav-link {% if current_menu_options is defined and current_menu_options =='options' %} active {% endif %}" href= "{{path('admin.option.index')}}"> {% trans %} Options {% endtrans %}  </a></li>
+					{% endif %}
 					<li class="nav-item">
-						<a class="nav-link" href="/admin/skills">
-							{% trans %}Skills{% endtrans %}
+						<a href="{{path('logout')}}" class="nav-link">
+							{% trans %}
+							Logout
+							{% endtrans %}
 						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/admin/formations">
-							{% trans %}Trainings{% endtrans %}
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/admin/references">
-							{% trans %}References{% endtrans %}
-						</a>
-					</li>
-
-					<li
-						class="nav-item"><!--a href="#" class="nav-link">
-						{% trans %} Logout{% endtrans %}
-						</a-->
 					</li>
 				{% else %}
-					<li
-						class="nav-item"><!--a href="#" class="nav-link">
-						{% trans %} Login {% endtrans %}
-						</a-->
+					<li class="nav-item">
+						<a href="{{path('login')}}" class="nav-link {% if current_menu is defined and current_menu =='login' %} active {% endif %}">
+							{% trans %}
+							Login
+							{% endtrans %}
+						</a>
 					</li>
 				{% endif %}
+			
+				
 				{% for locale in locales %}
 					{% if locale != app.request.locale %}
 						<li class="nav-item">

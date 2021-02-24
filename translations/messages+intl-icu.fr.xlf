@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="iVwDKgY" resname="Option created successfully !">
+        <source>Option created successfully !</source>
+        <target>Option crée avec succès !</target>
+      </trans-unit>
+      <trans-unit id="lsHWbdZ" resname="Option updated successfully !">
+        <source>Option updated successfully !</source>
+        <target>Option mise à jour avec succès !</target>
+      </trans-unit>
+      <trans-unit id="3.O0OYQ" resname="Option deleted successfully !">
+        <source>Option deleted successfully !</source>
+        <target>Option supprimée avec succès !</target>
+      </trans-unit>
+      <trans-unit id="Zg3O5Wp" resname="Property updated successfully !">
+        <source>Property updated successfully !</source>
+        <target>Propriété mise à jour avec succès !</target>
+      </trans-unit>
+      <trans-unit id="1aRckXT" resname="Property deleted successfully !">
+        <source>Property deleted successfully !</source>
+        <target>Propriété supprimée avec succès !</target>
+      </trans-unit>
+      <trans-unit id="ZOPLDkl" resname="Buy">
+        <source>Buy</source>
+        <target>Acheter</target>
+      </trans-unit>
+      <trans-unit id="rkNpKyo" resname="Properties">
+        <source>Properties</source>
+        <target>Propriétés</target>
+      </trans-unit>
+      <trans-unit id="0NuLXjZ" resname="Options">
+        <source>Options</source>
+        <target>Options</target>
+      </trans-unit>
+      <trans-unit id="0FJ_Sz1" resname="Logout">
+        <source>Logout</source>
+        <target>Déconnexion</target>
+      </trans-unit>
+      <trans-unit id="nWMiwfT" resname="Login">
+        <source>Login</source>
+        <target>Connexion</target>
+      </trans-unit>
+      <trans-unit id="p_LSbo0" resname="by">
+        <source>by</source>
+        <target>Par</target>
+      </trans-unit>
+      <trans-unit id="uXdtfd9" resname="the">
+        <source>the</source>
+        <target>Le</target>
+      </trans-unit>
+      <trans-unit id="ogl46_G" resname="Create new Option">
+        <source>Create new Option</source>
+        <target>Créer une option</target>
+      </trans-unit>
+      <trans-unit id=".qa7EJN" resname="Manage options">
+        <source>Manage options</source>
+        <target>Gérer des options</target>
+      </trans-unit>
+      <trans-unit id="vYLPFmm" resname="Number">
+        <source>Number</source>
+        <target>Numéro</target>
+      </trans-unit>
+      <trans-unit id="3NHVIj9" resname="Name">
+        <source>Name</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id=".4BZ3Gd" resname="Actions">
+        <source>Actions</source>
+        <target>Actions</target>
+      </trans-unit>
+      <trans-unit id="toMaWaO" resname="Delete an option">
+        <source>Delete an option</source>
+        <target>Supprimer une option</target>
+      </trans-unit>
+      <trans-unit id="7z6CZ0L" resname="Are you sure you want to delete that option ?">
+        <source>Are you sure you want to delete that option ?</source>
+        <target>Etes-vous sure de vouloir supprimer cette option ?</target>
+      </trans-unit>
+      <trans-unit id="Raqsun6" resname="Option">
+        <source>Option</source>
+        <target>Option</target>
+      </trans-unit>
+      <trans-unit id="hvNXz7j" resname="Agency">
+        <source>Agency</source>
+        <target>Agence</target>
+      </trans-unit>
+      <trans-unit id="jT6GW1V" resname="The latest properties">
+        <source>The latest properties</source>
+        <target>Dernières propriétés</target>
+      </trans-unit>
+      <trans-unit id="LYMfhKK" resname="Manage properties">
+        <source>Manage properties</source>
+        <target>Gérer des propriétés</target>
+      </trans-unit>
+      <trans-unit id="fozSBW2" resname="Title">
+        <source>Title</source>
+        <target>Titre</target>
+      </trans-unit>
+      <trans-unit id="ECvRIOA" resname="Surface (m²)">
+        <source>Surface (m²)</source>
+        <target>Surface (m²)</target>
+      </trans-unit>
+      <trans-unit id=".0lHzXl" resname="Price (€)">
+        <source>Price (€)</source>
+        <target>Prix (€)</target>
+      </trans-unit>
+      <trans-unit id="vTL2ztt" resname="Rooms">
+        <source>Rooms</source>
+        <target>Nombre de pièces</target>
+      </trans-unit>
+      <trans-unit id="0Cq7Z9b" resname="Delete a property">
+        <source>Delete a property</source>
+        <target>Supprimer une propriété</target>
+      </trans-unit>
+      <trans-unit id="eN1wMN6" resname="Are you sure you want to delete that property ?">
+        <source>Are you sure you want to delete that property ?</source>
+        <target>Etes-vous sure de vouloir supprimer cette propriété ?</target>
+      </trans-unit>
+      <trans-unit id="JeXHNcB" resname="No property">
+        <source>No property</source>
+        <target>Aucune propriété</target>
+      </trans-unit>
+      <trans-unit id="P_1F.Ja" resname="Edit property">
+        <source>Edit property</source>
+        <target>Modifier une propriété</target>
+      </trans-unit>
+      <trans-unit id="TUK.E1a" resname="Create a property">
+        <source>Create a property</source>
+        <target>Créer une propriété</target>
+      </trans-unit>
+      <trans-unit id="GiMD7eB" resname="Connect">
+        <source>Connect</source>
+        <target>Se Connecter </target>
+      </trans-unit>
+      <trans-unit id="47ienTP" resname="Username">
+        <source>Username</source>
+        <target>Nom d'utilisateur</target>
+      </trans-unit>
+      <trans-unit id="588_9PF" resname="Password">
+        <source>Password</source>
+        <target>Mot de passe</target>
+      </trans-unit>
+      <trans-unit id="ScJmuqq" resname="Search">
+        <source>Search</source>
+        <target>Rechercher</target>
+      </trans-unit>
+      <trans-unit id="svY1Ogy" resname="See all our properties">
+        <source>See all our properties</source>
+        <target>Voir tous nos immeubles</target>
+      </trans-unit>
+      <trans-unit id="DAkoqff" resname="No properties found corresponding to your search criteria">
+        <source>No properties found corresponding to your search criteria</source>
+        <target>Aucun immeuble ne correspond à vos critères de recherche</target>
+      </trans-unit>
+      <trans-unit id="v01Ibfj" resname="Contact the agency">
+        <source>Contact the agency</source>
+        <target>Contacter l'agence</target>
+      </trans-unit>
+      <trans-unit id="K1w9JnI" resname="Contact">
+        <source>Contact</source>
+        <target>Contact</target>
+      </trans-unit>
+      <trans-unit id="VpfQPa7" resname="Features">
+        <source>Features</source>
+        <target>Fonctionnalités</target>
+      </trans-unit>
+      <trans-unit id="VHVrVlU" resname="Livable surface">
+        <source>Livable surface</source>
+        <target>Surface habitable</target>
+      </trans-unit>
+      <trans-unit id="IEcnVKP" resname="Number of pieces">
+        <source>Number of pieces</source>
+        <target>Nombre de pièces</target>
+      </trans-unit>
+      <trans-unit id="HTkFdRv" resname="Number of rooms">
+        <source>Number of rooms</source>
+        <target>Nombre de pièces</target>
+      </trans-unit>
+      <trans-unit id="0mjJxEk" resname="Floor">
+        <source>Floor</source>
+        <target>Numéro d'étage</target>
+      </trans-unit>
+      <trans-unit id="1UKm7N2" resname="Type of heating">
+        <source>Type of heating</source>
+        <target>Type de chauffage</target>
+      </trans-unit>
+      <trans-unit id="QY649Ud" resname="Specificities">
+        <source>Specificities</source>
+        <target>Options</target>
+      </trans-unit>
+      <trans-unit id="K1tsvG9" resname="No specificities">
+        <source>No specificities</source>
+        <target>Aucune option</target>
+      </trans-unit>
+      <trans-unit id="ylHOH7F" resname="Hi!">
+        <source>Hi!</source>
+        <target>Salut !</target>
+      </trans-unit>
+      <trans-unit id="E9b_XBv" resname="Thanks for being interested by the property wich has that details :">
+        <source>Thanks for being interested by the property wich has that details :</source>
+        <target>Merci d'etre interessé par l'immeuble ayant ces caractéristiques :</target>
+      </trans-unit>
+      <trans-unit id="mhBdEwX" resname="Property created successfully !">
+        <source>Property created successfully !</source>
+        <target>Propriété crée avec succès !</target>
+      </trans-unit>
+      <trans-unit id="OeUR9IK" resname="Built with">
+        <source>Built with</source>
+        <target>Conçu avec</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

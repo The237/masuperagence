@@ -39,7 +39,7 @@ class PropertyController extends AbstractController
         );
 
         return $this->render('front_office/property/index.html.twig',[
-            'current_menu'=>'properties',
+            'current_menu_buy'=>'buy',
             'properties' => $properties ,
             'searchForm'=> $form->createView() 
         ]);

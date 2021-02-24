@@ -26,9 +26,12 @@ class AdminPropertyController  extends AbstractController
      */
     public function index(PropertyRepository $propertyRepository): Response
     {
-        $properties = $propertyRepository->findAll();
+        $properties = $propertyRepository->findBy(array(),array('createdAt'=>'DESC'));
 
-        return $this->render('back_office/property/index.html.twig',compact('properties'));
+        return $this->render('back_office/property/index.html.twig',[
+            'properties'=>$properties,
+            'current_menu_properties'=>'properties'
+            ]);
     }
 
     /**
@@ -49,7 +52,7 @@ class AdminPropertyController  extends AbstractController
             $em->persist($property);
             $em->flush();
 
-            $message = $translator->trans("Property updated successfully !");
+            $message = $translator->trans("Property created successfully !");
 
             $this->addFlash("success",$message);
             
